@@ -41,7 +41,7 @@ navigator.mediaDevices.getUserMedia({
         newUserImg.src = './phone-symbol-2.png'
         document.querySelector('.imgContainer').append(newUserImg)
         connectToNewUser(userId, stream)
-      }, 1000)
+      }, 5000)
     })
     socket.on('user-left', ()=>{
         console.log('user left')
@@ -59,7 +59,7 @@ function connectToNewUser(userId, stream){
     const audio = document.createElement('audio')
     call.on('stream', userVideoStream => {
         console.log('heokok')
-        addVideoStream(audio, userVideoStream)
+        addAudioStream(audio, userVideoStream)
     })
     call.on('close', ()=>{
         audio.remove()
@@ -68,7 +68,7 @@ function connectToNewUser(userId, stream){
 }
 
 
-function addVideoStream(video, stream){
+function addAudioStream(video, stream){
     console.log('heok')
     video.srcObject = stream
     video.addEventListener('loadedmetadata', ()=>{
